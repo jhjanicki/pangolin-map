@@ -1,0 +1,142 @@
+{"pangolins": 
+[{"species":"Indian Pangolin",
+ "range_countries":
+ 	[{"name":"Pakistan", "status": "native", "protected":true, "law":["Islamabad Wildlife Ordinance 1979", "North-West Frontier Province Wildlife Act 1975"]},
+ 	 {"name":"India", "status": "native","protected":true, "law":["Wildlife Protection Act 1972 (Schedule I)"]},
+ 	 {"name":"Bangladesh", "status": "possibly extinct","protected":true, "law":["Wildlife Act 2012"]},
+ 	 {"name":"Nepal", "status": "native","protected":true, "law":["National Parks and Wildlife Protection Act 1973(Protected Animal in Schedule I)"]},
+ 	 {"name":"China", "status": "historical","protected":true, "law":["Protection of Wildlife Act 1989", "Regulations on the Implementation of Protection of Terrestrial Wild Animals 1992", "Regulations on Management of Import and Export of Endangered Species of Wild Fauna and Flora 2006"]},
+ 	 {"name":"Myanmar", "status": "dubious","protected":false, "law":[""]},
+ 	 {"name":"Sri Lanka", "status": "native","protected":true, "law":[""]}
+ 	],
+  "demand_countries":[],
+  "description":[]
+  },
+  {"species":"Philippines Pangolin",
+   "range_countries":
+   [{"name":"Philippines","status":"native","protected":true,"law":["Philippine Wildlife Act 9147 (2001)"]}
+   ],
+   "demand_countries":[],
+   "description":[]
+  },
+  {"species":"Sunda Pangolin",
+   "range_countries":
+   [{"name":"China","status":"","protected":false,"law":""},
+    {"name":"Brunei","status":"native","protected":true,"law":["Forestry Act (2002)", "Wildlife Protection Act (1981)", "Wild Fauna and Flora Order (2007)"]},
+    {"name":"Cambodia","status":"native","protected":true,"law":""},
+    {"name":"Indonesia","status":"native","protected":true,"law":""},
+    {"name":"Laos","status":"native","protected":true,"law":""},
+    {"name":"Malaysia","status":"native","protected":true,"law":""},
+    {"name":"Singapore","status":"native","protected":true,"law":""},
+    {"name":"Thailand","status":"native","protected":true,"law":""}  
+   ],
+   "demand_countries":[],
+   "description":[]
+  },
+  {"species":"Chinese Pangolin",
+   "range_countries":
+   [{"name":"India","status":"native","protected":true,"law":[""]},
+    {"name":"Bangladesh","status":"maybe","protected":true,"law":["Wildlife (Conservation & Security) Act 2012"]},
+    {"name":"Nepal","status":"native","protected":true,"law":[""]},
+    {"name":"China","status":"native","protected":true,"law":["Protection of Wildlife Act (1989)"]},
+    {"name":"Myanmar","status":"native","protected":true,"law":[""]},
+    {"name":"Laos","status":"native","protected":true,"law":[""]},
+    {"name":"Thailand","status":"native","protected":true,"law":[""]},
+    {"name":"Vietnam","status":"native","protected":true,"law":[""]},
+    {"name":"Bhutan","status":"native","protected":true,"law":[""]},
+    {"name":"Hong Kong","status":"native","protected":true,"law":[""]},
+    {"name":"Taiwan","status":"native","protected":true,"law":[""]}
+   ],
+   "demand_countries":[],
+   "description":[]
+  },
+   {"species":"Black-bellied Pangolin",
+   "range_countries":
+   [{"name":"Cameroon","status":"native","protected":true,"law":[""]},
+    {"name":"Central African Republic","status":"native","protected":true,"law":[""]},
+    {"name":"Democratic Republic of the Congo","status":"native","protected":true,"law":[""]},
+    {"name":"Republic of the Congo","status":"native","protected":true,"law":[""]},
+    {"name":"Ivory Coast","status":"native","protected":true,"law":[""]},
+    {"name":"Equatorial Guinea","status":"native","protected":true,"law":[""]},
+    {"name":"Gabon","status":"native","protected":true,"law":[""]},
+    {"name":"Ghana","status":"native","protected":true,"law":[""]},
+    {"name":"Liberia","status":"native","protected":true,"law":[""]},
+    {"name":"Nigeria","status":"native","protected":true,"law":[""]},
+    {"name":"Sierra Leone","status":"native","protected":true,"law":[""]},
+    {"name":"Angola","status":"","protected":true,"law":[""]},
+    {"name":"Uganda","status":"possibly","protected":true,"law":[""]}
+   ],
+   "demand_countries":[],
+   "description":[]
+  },
+  {"species":"White-bellied Pangolin",
+   "range_countries":
+   [{"name":"Cameroon","status":"native","protected":true,"law":[""]},
+    {"name":"Central African Republic","status":"native","protected":true,"law":[""]},
+    {"name":"Democratic Republic of the Congo","status":"native","protected":true,"law":[""]},
+    {"name":"Republic of the Congo","status":"native","protected":true,"law":[""]},
+    {"name":"Ivory Coast","status":"native","protected":true,"law":[""]},
+    {"name":"Equatorial Guinea","status":"native","protected":true,"law":[""]},
+    {"name":"Gabon","status":"native","protected":true,"law":[""]},
+    {"name":"Ghana","status":"native","protected":true,"law":[""]},
+    {"name":"Liberia","status":"native","protected":true,"law":[""]},
+    {"name":"Nigeria","status":"native","protected":true,"law":[""]},
+    {"name":"Sierra Leone","status":"native","protected":true,"law":[""]},
+    {"name":"Angola","status":"native","protected":true,"law":[""]},
+    {"name":"Uganda","status":"native","protected":true,"law":[""]},
+    {"name":"Benin","status":"native","protected":true,"law":[""]},
+    {"name":"Guinea","status":"native","protected":true,"law":[""]},
+    {"name":"Guinea Bissau","status":"native","protected":true,"law":[""]},
+    {"name":"Kenya","status":"native","protected":true,"law":[""]},
+    {"name":"Rwanda","status":"native","protected":true,"law":[""]},
+    {"name":"South Sudan","status":"native","protected":true,"law":[""]},
+    {"name":"Tanzania","status":"native","protected":true,"law":[""]},
+    {"name":"Togo","status":"native","protected":true,"law":[""]},
+    {"name":"Zambia","status":"native","protected":true,"law":[""]}
+   ],
+   "demand_countries":[],
+   "description":[]
+  },
+  {"species":"Giant Ground Pangolin",
+   "range_countries":
+   [{"name":"Cameroon","status":"native","protected":true,"law":[""]},
+    {"name":"Central African Republic","status":"native","protected":true,"law":[""]},
+    {"name":"Democratic Republic of the Congo","status":"native","protected":true,"law":[""]},
+    {"name":"Republic of the Congo","status":"native","protected":true,"law":[""]},
+    {"name":"Ivory Coast","status":"native","protected":true,"law":[""]},
+    {"name":"Equatorial Guinea","status":"native","protected":true,"law":[""]},
+    {"name":"Gabon","status":"native","protected":true,"law":[""]},
+    {"name":"Ghana","status":"native","protected":true,"law":[""]},
+    {"name":"Liberia","status":"native","protected":true,"law":[""]},
+    {"name":"Senegal","status":"native","protected":true,"law":[""]},
+    {"name":"Uganda","status":"native","protected":true,"law":[""]},
+    {"name":"Guinea","status":"native","protected":true,"law":[""]},
+    {"name":"Guinea Bissau","status":"native","protected":true,"law":[""]},
+    {"name":"Sierra Leone","status":"native","protected":true,"law":[""]},
+    {"name":"Tanzania","status":"native","protected":true,"law":[""]},
+    {"name":"Zambia","status":"native","protected":true,"law":[""]}
+   ],
+   "demand_countries":[],
+   "description":[]
+  },
+  {"species":"Temmick's Pangolin",
+   "range_countries":
+   [{"name":"Central African Republic","status":"native","protected":true,"law":[""]},
+    {"name":"Uganda","status":"native","protected":true,"law":[""]},
+    {"name":"Kenya","status":"native","protected":true,"law":[""]},
+    {"name":"Rwanda","status":"native","protected":true,"law":[""]},
+    {"name":"South Sudan","status":"native","protected":true,"law":[""]},
+    {"name":"Botswana","status":"native","protected":true,"law":[""]},
+    {"name":"Togo","status":"native","protected":true,"law":[""]},
+    {"name":"Zambia","status":"native","protected":true,"law":[""]},
+    {"name":"Chad","status":"native","protected":true,"law":[""]},
+    {"name":"Malawi","status":"native","protected":true,"law":[""]},
+    {"name":"Namibia","status":"native","protected":true,"law":[""]},
+    {"name":"Mozambique","status":"native","protected":true,"law":[""]},
+    {"name":"South Africa","status":"native","protected":true,"law":[""]},
+    {"name":"Zimbabwe","status":"native","protected":true,"law":[""]}
+   ],
+   "demand_countries":[],
+   "description":[]
+  }
+]}	 

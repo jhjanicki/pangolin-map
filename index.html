@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Google Fonts Dosis -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dosis">
+    
+    <!-- Google Fonts Open Sans -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    
+    <!-- Leafet CSS -->
+    <link rel="stylesheet" href="js/libraries/leaflet/leaflet.css" type="text/css" />
+    
+    <!-- Jquery UI autocomplete -->
+    <link rel="stylesheet" href="js/libraries/jquery-ui-autocomplete/jquery-ui.min.css" />
+    
+   <style>
+   
+   html, body{
+   	font-family: 'Open Sans', sans-serif;
+   	width:100%;
+   	margin:0;
+   	padding:0;
+   }
+   	#mapContainer{
+   		width:100%;
+   		height:700px;
+   		margin-left:25px; /* why? */
+   	}
+   	
+   	#open_text{
+		position: absolute;
+		z-index:99;
+		margin-left:50px;
+	}
+
+	#buttons{
+		position: absolute;
+		z-index:99;
+		margin-top:150px;
+		margin-left:10px; /* why? */
+	}
+	
+
+	.button{
+		margin-bottom: 10px;
+		margin-top: 10px;
+		margin-left: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 14px;
+		padding-right: 14px;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 14px;
+		line-height: 1.5;
+		text-transform: uppercase;
+		background-color: none;
+		color: black;
+		border: solid 1px black;
+		-webkit-transition: all 500ms ease;
+		-moz-transition: all 500ms ease;
+		-ms-transition: all 500ms ease;
+		transition: all 500ms ease;
+	}
+
+	.button:hover{
+		background-color: black;
+		color:white;
+		text-decoration:none;
+		cursor: pointer;
+	}
+
+	.button:active{
+		color:#2c7fb8;
+		text-decoration:none;
+	}
+	
+	.active-button{
+		color:white;
+		background-color:#2c7fb8;
+		border: solid 1px #2c7fb8;
+	}
+	
+	.active-button:hover{
+		background-color: black;
+		color:white;
+		border: solid 1px black;
+		text-decoration:none;
+		cursor: pointer;
+	
+	}
+	
+	#top{
+		width:100%;
+		height:50px;
+		background-color:black;
+		color:white;
+		margin-left:30px; /* why? */
+		margin-right:0px;
+	}
+	
+	
+	#toolbar{
+		width:100%;
+		height:100px;
+		background-color:none;
+		color:white;
+		margin-left:0px;
+		margin-right:0px;
+		top:0px;
+		left:0px;
+		position:absolute;
+		z-index:999;
+		/* opacity:0.2; */
+	}
+	
+	#dropdown{
+		position:absolute;
+		top:10px;
+		right:70px;
+	}
+	
+	#species-container{
+		margin-left:100px;
+	}
+	#species-container img{
+		width:100px;
+		height:110px;
+		display: inline;
+		-webkit-clip-path: circle(50px at center);
+	}
+	#species-container img:hover{
+		-webkit-clip-path: none;
+		-webkit-transition: opacity .35s;
+		-moz-transition: opacity .35s;
+		transition: opacity .35s;
+		cursor:pointer;
+		opacity:0.8;
+	}
+	
+	#title{
+		margin:0px;
+		width:500px;
+		padding-top:10px;
+		padding-left:20px;
+	}
+	#selected-species{
+		color:black;
+		font-size:26px;
+		position:absolute;
+		bottom:20px;
+		left:100px;
+		z-index:999;
+	}	
+	
+	.selected-img{
+		opacity:0.6;
+	}
+	#sidebar{
+		background: #EFEFE7;
+		height:700px;
+		width:100%;
+		margin:0;
+		margin-left:15px;
+		padding:0;
+	}
+	
+
+	/* Dropdown Content (Hidden by Default) */
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 170px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	}
+
+	/* Links inside the dropdown */
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+	
+	.dropdown-content li {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		text-transform:uppercase;
+		font-size:14px;
+		font-weight:bold;
+	}
+
+	/* Change color of dropdown links on hover */
+	.dropdown-content a:hover {background-color: #f1f1f1}
+
+	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+	.show {display:block;}
+	
+	.col-md-9,.col-md-3, .col-md-12, .col-md-10,.col-md-2{
+		padding-left:0px;
+		padding-right:0px;
+		margin-left:0px;
+		margin-right:0px;
+		
+	}
+	
+	
+	
+	@media all and (max-width: 1400px){
+		#species-container img{
+			width:90px;
+			height:90px;
+			-webkit-clip-path: circle(45px at center);
+	}
+	@media all and (max-width: 1290px){
+		#species-container img{
+			width:80px;
+			height:80px;
+			-webkit-clip-path: circle(40px at center);
+	}
+	@media all and (max-width: 1190px){
+		#species-container img{
+			width:70px;
+			height:70px;
+			-webkit-clip-path: circle(35px at center);
+		}
+		#species-container{
+			margin-left:80px;
+		}
+	}
+	@media all and (max-width: 1050px){
+		#species-container img{
+			width:64px;
+			height:64px;
+			-webkit-clip-path: circle(32px at center);
+		}
+		
+	}
+	
+	@media all and (max-width: 992px){
+		#species-container img{
+			width:80px;
+			height:80px;
+			-webkit-clip-path: circle(40px at center);
+		}
+		
+	}
+	
+   </style>
+
+</head>
+<body>
+
+<div class="row" id="top">
+    <div class="col-md-12"> 
+    	   <h3 id="title"> Pangolins: The Illegal Wildlife Trade </h3>
+    </div>
+</div>
+
+
+<div class="row ">
+    <div class="col-md-10">    
+ 		<div id="toolbar">
+ 			<div id="species-container">
+ 				<img src="img/black-bellied-pangolin.jpg" data-species="Black-bellied Pangolin" id="blackBelliedPangolin"/>
+ 				<img src="img/white-bellied-pangolin.jpg" data-species="White-bellied Pangolin" id="whiteBelliedPangolin"/>
+ 				<img src="img/indian-pangolin.jpg" data-species="Indian Pangolin" id="indianPangolin"/>
+ 				<img src="img/philippine-pangolin.jpg" data-species="Philippines Pangolin" id="philippinesPangolin"/>
+ 				<img src="img/chinese-pangolin.jpg" data-species="Chinese Pangolin" id="chinesePangolin"/>
+ 				<img src="img/sunda-pangolin.jpg" data-species="Sunda Pangolin" id="sundaPangolin"/>
+ 				<img src="img/temmicks-pangolin.jpg" data-species="Temmicks Pangolin" id="temmicksPangolin"/>
+ 				<img src="img/giant-ground-pangolin.jpg" data-species="Giant Ground Pangolin" id="giantGroundPangolin"/>
+ 			</div>
+ 			<div id="dropdown">
+ 				<div onclick="myFunction()" class="button">Menu</div>
+				  <div id="myDropdown" class="dropdown-content">
+					<a href="#" id="allSpecies">All Species</a>
+					<li>Trade Statistics</li>
+					<a href="#">Demand Countries</a>
+					<a href="#">Range Countries</a>
+					<li>Legal Assessment</li>
+					<a href="#">Countries with Protection</a>
+					<a href="#" id="cites">CITES Members</a>
+				  </div>
+ 			</div>
+    	</div>
+    	<div id="selected-species"></div>
+    	<div id="mapContainer">
+   		</div>
+
+   
+    </div>
+     <div class="col-md-2">
+     	<div id="sidebar">
+     	</div>
+     </div>    
+    
+</div>
+    
+    
+
+    
+    
+    <!-- jQuery -->
+    <script src="js/libraries/jquery.js"></script>
+
+	 <!-- underscore -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/libraries/bootstrap.min.js"></script>
+    
+    <!-- D3 -->
+    
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    
+    <!-- D3.geo -->
+    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+    
+    <!-- Queue -->
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    
+	<!-- Leaflet -->
+	<script src="js/libraries/leaflet/leaflet.js" type="text/javascript"></script>
+	
+	
+	<!--  project files -->
+	<script src="js/pangolin.js" type="text/javascript"></script>
+	
+	
+	<script>
+		function myFunction() {
+			document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+		// Close the dropdown menu if the user clicks outside of it
+		window.onclick = function(event) {
+		  if (!event.target.matches('.button')) {
+
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for (i = 0; i < dropdowns.length; i++) {
+			  var openDropdown = dropdowns[i];
+			  if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			  }
+			}
+		  }
+		}
+	</script>
+	
+
+<footer>
+	
+</footer>
+
+
+</body>
+
+</html>
