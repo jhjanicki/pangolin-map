@@ -26,17 +26,43 @@
 		drawPangolinRange(selectedSpecies, this.id);
 		
 	});
-	
+				
+			
+
 	
 	$('#allSpecies').on('click', function(){
 		selected=false;
+		$('img').removeClass('unselected-img');
+		$("#selected-species").html('');
 		drawPangolinRange('all species', this.id);
 	});
 	
 	$("#cites").on('click', function(){
+		
 		drawCites();
+		drawLegend();
 	});
 	
+	
+	
+		$("#dropdown").on('click',function(){
+		$("#new-dropdown").toggleClass('show none');
+	});
+	$('.toggle-button').on('click', function() {
+		console.log($(this));
+		$(this).find('.plus').toggleClass('show none');
+		$(this).find('.minus').toggleClass('show none');
+	});
+	$('#button-one').on('click', function() {
+		$('#detail-one').toggleClass('show none');
+	});
+	$('#button-two').on('click', function() {
+		$('#detail-two').toggleClass('show none');
+	});
+	$('#button-three').on('click', function() {
+		$('#detail-three').toggleClass('show none');
+	});
+
 	
 	
 	
@@ -205,8 +231,8 @@
 							   });
 							   
 						// this.parentNode.appendChild(this);
-					$('img').addClass('selected-img');
-					$('#'+id).removeClass('selected-img');
+					$('img').addClass('unselected-img');
+					$('#'+id).removeClass('unselected-img');
 					$("#selected-species").html(species);
 				}); // end json
 					
@@ -463,6 +489,84 @@
 		this.parentNode.appendChild(this);
 	  });
 	};
+	
+	function drawLegend(){
+		d3.select('#linearLegend svg').remove();
+	
+		// linear scale, 2 colors
+      var lScale = d3.scale.linear()
+			.domain([1973,2014])
+			.range(['rgb(8, 88, 158)', 'rgb( 168, 221, 181)']);
+			
+		var boxWidth = 20        // width of each box (int)
+		, boxHeight = 20      // height of each box (int)         
+		, linearBoxes =  9   // number of boxes for linear scales (int)
+		, w = 300           // width of container element
+		, h = 60          // height of container element
+		, colors = []
+		, padding = [2, 4, 10, 4]               // top, right, bottom, left
+		, boxSpacing = 0 // spacing between boxes
+		, domain = [1973,2014]
+		, range = ['rgb(8, 88, 158)', 'rgb( 168, 221, 181)']  
+		, i = 0;
+		
+		 var min = 1973;
+    	 var max = 2014;
+    	 
+		for (i = 0; i < linearBoxes ; i++) {
+		  colors[i] = lScale(min + i * ((max - min) / linearBoxes));
+		 }
+		 
+		  if (w < (boxWidth + boxSpacing) * colors.length + padding[1] + padding[3]) {
+			boxWidth = (w - padding[1] - padding[3] - (boxSpacing * colors.length)) / colors.length;
+			}
+			if (h < boxHeight + padding[0] + padding[2]) {  
+			  boxHeight = h - padding[0] - padding[2];    
+			}
+			
+			var legend = d3.select('#linearLegend')
+				.append('svg')
+				  .attr('width', w)
+				  .attr('height', h)
+				  .append('g')
+				  .attr('class', 'colorlegend')
+				  .attr('transform', 'translate(20,20)')
+				  .style('font-size', '11px')
+				  .style('fill', '#666');
+	  
+			  var legendBoxes = legend.selectAll('g.legend')
+				  .data(colors)
+				  .enter().append('g');
+			
+ 			valueLabels = legendBoxes.append('text')
+			  .attr('class', 'colorlegend-labels')
+			  .attr('dy', '.71em')
+			  .attr('x', function (d, i) {
+				return i * (boxWidth + boxSpacing)+10;
+			  })
+			  .attr('y', function () {
+				return boxHeight + 2;
+			  });
+			  
+			  valueLabels    
+			  .style('text-anchor', 'middle')
+			  .style('pointer-events', 'none')
+			  .text(function (d, i) {
+				  if (i === 0)
+					return 1976;
+				  if (i === colors.length - 1) 
+					return 2014;
+			  });
+			  legendBoxes.append('rect')
+			  .attr('x', function (d, i) { 
+				return i * (boxWidth + boxSpacing);
+			  })
+			  .attr('width', boxWidth)
+			  .attr('height', boxHeight)
+			  .style('fill', function (d, i) { return colors[i]; });
+			
+		 
+		}
 	
 	
 	
