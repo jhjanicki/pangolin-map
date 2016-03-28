@@ -32,6 +32,7 @@
    	width:100%;
    	margin:0;
    	padding:0;
+   	overflow-x:hidden;
    }
    	#mapContainer{
    		width:100%;
@@ -39,11 +40,6 @@
    		margin-left:15px; /* why? */
    	}
    	
-   	#open_text{
-		position: absolute;
-		z-index:99;
-		margin-left:50px;
-	}
 
 	#buttons{
 		position: absolute;
@@ -100,6 +96,10 @@
 		text-decoration:none;
 		cursor: pointer;
 	
+	}
+	
+	.inline{
+		display:inline;
 	}
 	
 	#top{
@@ -165,11 +165,11 @@
 		z-index:999;
 	}	
 	
-	.selected-img{
+	.unselected-img{
 		opacity:0.6;
 	}
 	#sidebar{
-		background: #EFEFE7;
+		background: #DDDAD6;
 		height:700px;
 		width:100%;
 		margin:0;
@@ -209,7 +209,13 @@
 	.dropdown-content a:hover {background-color: #f1f1f1}
 
 	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-	.show {display:block;}
+	.show {
+		display:block;
+	}
+	
+	.none{
+		display:none;
+	}
 	
 	.col-md-9,.col-md-3, .col-md-12, .col-md-10,.col-md-2{
 		padding-left:0px;
@@ -219,6 +225,100 @@
 		
 	}
 	
+	
+	#new-dropdown{
+      	position:absolute;
+		top:64px;
+		right:70px;
+    	z-index: 999;
+    	background-color: #F8F8F8;
+      	
+      }
+      
+      .new-panel{
+      	position:relative;
+		display: block;
+		width: 200px;
+		height: 60px;
+		border-top: 1px solid #FFF;
+		border-bottom: 1px solid #DDD;
+		cursor: pointer;
+		background:white;
+		z-index:999;
+      
+      }
+      
+      .top-menu-title{
+		text-transform: uppercase;
+		font-family: "AvenirNextCondensed-Medium", "AvenirNextLTW01-MediumC 721311", "Arial Narrow", Verdana, sans-serif;
+		font-size: 20px;
+		left: 5px;
+		text-align:left;
+		padding-left:10px;
+		padding-top:14px;
+      }
+      
+      .top-menu-title p{
+      	color:black;
+      	text-align:left;
+      }
+      
+      .text{
+		text-transform: uppercase;
+		font-family: "AvenirNextCondensed-Medium", "AvenirNextLTW01-MediumC 721311", "Arial Narrow", Verdana, sans-serif;
+		font-size: 16px;
+		left: 5px;
+      }
+      
+      .text p{
+      	color:black;
+      	margin-top:10px;
+      	margin-left:10px;
+      }
+      
+       .text p:hover{
+        cursor:pointer;
+        color:#BBB;
+        transition: all 0.5S ease;
+       }
+      
+      .panel .top{
+      	height: 60px;
+      }
+      
+      .panel .details .text {
+		margin: 20px auto 20px;
+		font-size: 18px;
+		text-align: center;
+		color: #222;
+    }
+    
+    .details{
+    	width: 200px;
+    }
+    
+    .toggle-button {
+		position: absolute;
+		right: 10px;
+		top: 12px;
+		font-size: 22px;
+		color: white;
+		font-family: "Pictos";
+		border-radius: 50%;
+		width:30px;
+		height:30px;
+		padding-left:8px;
+		background-color:#BBB;
+	}
+	
+	.toggle-button:hover{
+		background-color:black;
+		transition: all 0.5s ease;
+	}
+	
+	.minus {
+    	padding-left:3px;
+	}
 	
 	
 	@media all and (max-width: 1400px){
@@ -261,6 +361,32 @@
 		
 	}
 	
+	.legend {
+        background-color: #fff;
+        width: 224px;
+        height: 60px;
+        border: 1px solid #bbb;
+        margin: 10px;
+        z-index:9999;
+      }
+
+      #quantileLegend .colorlegend-labels {
+        font-size: 11px;
+        fill: black;
+      }
+      #linearLegend .colorlegend-labels {
+        font-size: 9px;
+        fill: #888;
+      }
+      #ordinalLegend .colorlegend-title {
+        font-size: 18px;
+        fill: #aaa;
+      }
+      
+      
+      
+    
+	
    </style>
 
 </head>
@@ -286,18 +412,81 @@
  				<img src="img/temmicks-pangolin.jpg" data-species="Temmicks Pangolin" id="temmicksPangolin"/>
  				<img src="img/giant-ground-pangolin.jpg" data-species="Giant Ground Pangolin" id="giantGroundPangolin"/>
  			</div>
+ 			
  			<div id="dropdown">
+ 				<div class="button">Menu</div>
+ 			</div>
+ 			
+ 			<div id="new-dropdown" class="none">
+ 				<div class="new-panel">
+ 					<div class="top">
+ 						<div class="top-menu-title">
+ 							<p class="inline">Species</p>
+ 						</div>
+ 						<div class="toggle-button inline" id="button-one">
+ 							<span class="plus show">+</span>
+ 							<span class="minus none">-</span>
+ 						</div>
+ 					</div>
+ 				</div>
+ 				<div class="details none" id="detail-one">
+ 						<div class = "text">
+ 							<p id="allSpecies">Pangolin</p>
+ 							<p>Rhinos</p>
+ 							<p>Elephants</p>
+ 							<p>Big Cats</p>
+ 						</div>
+ 				</div>
+ 				<div class="new-panel">
+ 					<div class="top">
+ 						<div class="top-menu-title">
+ 							<p class="inline">Trade Statistics</p>
+ 						</div>
+ 						<div class="toggle-button" id="button-two">
+ 							<span class="plus show">+</span>
+ 							<span class="minus none">-</span>
+ 						</div>
+ 					</div>
+ 				</div>
+ 				<div class="details none" id="detail-two">
+ 						<div class = "text">
+ 							<p>Demand Countries</p>
+ 							<p>Range Countries</p>
+ 							<p>Transit Countries</p>
+ 						</div>
+ 				</div>
+ 				<div class="new-panel">
+ 					<div class="top">
+ 						<div class="top-menu-title">
+ 							<p class="inline">Legal Assessment</p>
+ 						</div>
+ 						<div class="toggle-button" id="button-three">
+ 							<span class="plus show">+</span>
+ 							<span class="minus none">-</span>
+ 						</div>
+ 					</div>
+ 				</div>
+ 				<div class="details none" id="detail-three">
+ 						<div class = "text">
+ 							<p id="cites">CITES</p>
+ 						</div>
+ 				</div>
+ 			</div>
+ 			<!-- 
+<div id="dropdown">
  				<div onclick="myFunction()" class="button">Menu</div>
 				  <div id="myDropdown" class="dropdown-content">
 					<a href="#" id="allSpecies">All Species</a>
-					<li>Trade Statistics</li>
+					<li id="trade" class="top-menu">Trade Statistics</li>
 					<a href="#">Demand Countries</a>
 					<a href="#">Range Countries</a>
-					<li>Legal Assessment</li>
+					<a href="#">Transit Countries</a>
+					<li class="top-menu">Legal Assessment</li>
 					<a href="#">Countries with Protection</a>
 					<a href="#" id="cites">CITES Members</a>
 				  </div>
  			</div>
+ -->
     	</div>
     	<div id="selected-species"></div>
     	<div id="mapContainer">
@@ -307,6 +496,7 @@
     </div>
      <div class="col-md-2">
      	<div id="sidebar">
+     		 <div id="linearLegend" class="legend"></div>
      	</div>
      </div>    
     
@@ -332,6 +522,9 @@
     <!-- D3.geo -->
     <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
     
+    <!-- D3 legend -->
+    <script src="js/colorlegend.js" type="text/javascript"></script>
+    
     <!-- Queue -->
     <script src="http://d3js.org/queue.v1.min.js"></script>
     
@@ -344,24 +537,26 @@
 	
 	
 	<script>
-		function myFunction() {
-			document.getElementById("myDropdown").classList.toggle("show");
-		}
+		// function myFunction() {
+// 			document.getElementById("myDropdown").classList.toggle("show");
+// 		}
+// 
+// 		// Close the dropdown menu if the user clicks outside of it
+// 		window.onclick = function(event) {
+// 		  if (!event.target.matches('.button')) {
+// 
+// 			var dropdowns = document.getElementsByClassName("dropdown-content");
+// 			var i;
+// 			for (i = 0; i < dropdowns.length; i++) {
+// 			  var openDropdown = dropdowns[i];
+// 			  if (openDropdown.classList.contains('show')) {
+// 				openDropdown.classList.remove('show');
+// 			  }
+// 			}
+// 		  }
+// 		}
 
-		// Close the dropdown menu if the user clicks outside of it
-		window.onclick = function(event) {
-		  if (!event.target.matches('.button')) {
 
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-			  var openDropdown = dropdowns[i];
-			  if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-			  }
-			}
-		  }
-		}
 	</script>
 	
 
