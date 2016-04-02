@@ -37,7 +37,7 @@
    	#mapContainer{
    		width:100%;
    		height:700px;
-   		margin-left:15px; /* why? */
+   		margin-left:0px; /* why? */
    	}
    	
 
@@ -111,6 +111,17 @@
 		margin-right:0px;
 	}
 	
+	#top-second{
+		width:100%;
+		height:40px;
+		background-color:#F3F5F8;
+		box-shadow: 5px 5px 2px #666666;
+		color:#666666;
+		margin-left:0px; /* why? */
+		margin-right:0px;
+		margin-bottom:5px;
+	}
+	
 	
 	#toolbar{
 		width:100%;
@@ -132,6 +143,34 @@
 		right:70px;
 	}
 	
+
+	
+	#reset{
+		position:absolute;
+		top:20px;
+		right:160px;
+	}
+	
+	#reset:hover{
+		opacity:0.5;
+		cursor: pointer;
+		transition: all 1S ease;
+		
+	}
+	
+	#fact{
+		position:absolute;
+		top:20px;
+		right:210px;
+	}
+	
+	#fact:hover{
+		opacity:0.5;
+		cursor: pointer;
+		transition: all 1S ease;
+		
+	}
+	
 	#species-container{
 		margin-left:100px;
 	}
@@ -147,7 +186,7 @@
 		-moz-transition: opacity .35s;
 		transition: opacity .35s;
 		cursor:pointer;
-		opacity:0.8;
+		opacity:1;
 	}
 	
 	#title{
@@ -166,8 +205,9 @@
 	}	
 	
 	.unselected-img{
-		opacity:0.6;
+		opacity:0.4;
 	}
+	
 	#sidebar{
 		background: #DDDAD6;
 		height:700px;
@@ -238,7 +278,7 @@
       .new-panel{
       	position:relative;
 		display: block;
-		width: 200px;
+		width: 210px;
 		height: 60px;
 		border-top: 1px solid #FFF;
 		border-bottom: 1px solid #DDD;
@@ -294,7 +334,7 @@
     }
     
     .details{
-    	width: 200px;
+    	width: 210px;
     }
     
     .toggle-button {
@@ -394,15 +434,25 @@
 
 <div class="row" id="top">
     <div class="col-md-12"> 
+    	   <h3 id="title"> legalatlas </h3>
+    </div>
+</div>
+<div class="row" id="top-second">
+    <div class="col-md-12"> 
     	   <h3 id="title"> Pangolins: The Illegal Wildlife Trade </h3>
     </div>
 </div>
 
 
 <div class="row ">
+	 <div class="col-md-2">
+     	<div id="sidebar">
+     		 <div id="linearLegend" class="legend"></div>
+     	</div>
+     </div>    
     <div class="col-md-10">    
  		<div id="toolbar">
- 			<div id="species-container">
+ 			<div id="species-container" class="none">
  				<img src="img/black-bellied-pangolin.jpg" data-species="Black-bellied Pangolin" id="blackBelliedPangolin"/>
  				<img src="img/white-bellied-pangolin.jpg" data-species="White-bellied Pangolin" id="whiteBelliedPangolin"/>
  				<img src="img/indian-pangolin.jpg" data-species="Indian Pangolin" id="indianPangolin"/>
@@ -412,6 +462,10 @@
  				<img src="img/temmicks-pangolin.jpg" data-species="Temmicks Pangolin" id="temmicksPangolin"/>
  				<img src="img/giant-ground-pangolin.jpg" data-species="Giant Ground Pangolin" id="giantGroundPangolin"/>
  			</div>
+ 			
+ 			
+ 			<img id='reset' src="img/reset2.png"/>
+ 			<img id='fact' src="img/fact2.png"/>
  			
  			<div id="dropdown">
  				<div class="button">Menu</div>
@@ -468,7 +522,10 @@
  				</div>
  				<div class="details none" id="detail-three">
  						<div class = "text">
- 							<p id="cites">CITES</p>
+ 							<p id="cites">CITES Members</p>
+ 							<p>Has CITES implanting legislation</p>
+ 							<p>Wildlife crime is treated as a serious crime</p>
+ 							<p>Protects against online advertising of illicit wildlife</p>
  						</div>
  				</div>
  			</div>
@@ -494,11 +551,7 @@
 
    
     </div>
-     <div class="col-md-2">
-     	<div id="sidebar">
-     		 <div id="linearLegend" class="legend"></div>
-     	</div>
-     </div>    
+    
     
 </div>
     
