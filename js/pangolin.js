@@ -32,20 +32,32 @@
 	
 	$('#allSpecies').on('click', function(){
 		selected=false;
+		$('#species-container').removeClass('none');
 		$('img').removeClass('unselected-img');
 		$("#selected-species").html('');
 		drawPangolinRange('all species', this.id);
 	});
 	
 	$("#cites").on('click', function(){
-		
+		$('#species-container').addClass('none');
+		pangolinPath.selectAll("path").remove();
+		rangePath.selectAll("path").remove();
 		drawCites();
 		drawLegend();
 	});
 	
+	$('#reset').on('click',function(){
+		d3.select('#linearLegend svg').remove();
+		pangolinPath.selectAll("path").remove();
+		rangePath.selectAll("path").remove();
+		citesPath.selectAll("path").remove();
+		$('#species-container').addClass('none');
+		
+	});
 	
 	
-		$("#dropdown").on('click',function(){
+	
+	$("#dropdown").on('click',function(){
 		$("#new-dropdown").toggleClass('show none');
 	});
 	$('.toggle-button').on('click', function() {
@@ -140,7 +152,7 @@
 							return d.properties.hasOwnProperty("CITES");
 							//return "species" in d.properties; 
 					});
-		console.log(citesCountries);
+		//console.log(citesCountries);
 		
 		
 		
@@ -193,6 +205,7 @@
 		pangolinPath.selectAll("path").remove();
 		rangePath.selectAll("path").remove();
 		citesPath.selectAll("path").remove();
+		d3.select('#linearLegend svg').remove();
 		
 		
 		//console.log('drawPangolinRange');
@@ -232,6 +245,8 @@
 							   
 						// this.parentNode.appendChild(this);
 					$('img').addClass('unselected-img');
+					$('#reset').removeClass('unselected-img');
+					$('#fact').removeClass('unselected-img');
 					$('#'+id).removeClass('unselected-img');
 					$("#selected-species").html(species);
 				}); // end json
@@ -295,13 +310,13 @@
 					
 					});
 					
-					console.log(countries);
+					//console.log(countries);
 					var rangeCountries = countries.features.filter(function(d){
 							return d.properties.hasOwnProperty("species");
 							//return "species" in d.properties; 
 					});
 					
-					console.log(rangeCountries);
+					//console.log(rangeCountries);
 					
 					 rangePath.selectAll("path")
 				   		.data(rangeCountries)
@@ -414,7 +429,7 @@
 				 g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
 		
 				
-				 drawPangolinRange();
+				 //drawPangolinRange();
 		
 		}); // end adm0
 	
@@ -492,23 +507,23 @@
 	
 	function drawLegend(){
 		d3.select('#linearLegend svg').remove();
-	
+
 		// linear scale, 2 colors
       var lScale = d3.scale.linear()
 			.domain([1973,2014])
 			.range(['rgb(8, 88, 158)', 'rgb( 168, 221, 181)']);
 			
-		var boxWidth = 20        // width of each box (int)
-		, boxHeight = 20      // height of each box (int)         
-		, linearBoxes =  9   // number of boxes for linear scales (int)
-		, w = 300           // width of container element
-		, h = 60          // height of container element
-		, colors = []
-		, padding = [2, 4, 10, 4]               // top, right, bottom, left
-		, boxSpacing = 0 // spacing between boxes
-		, domain = [1973,2014]
-		, range = ['rgb(8, 88, 158)', 'rgb( 168, 221, 181)']  
-		, i = 0;
+		var boxWidth = 20,        // width of each box (int)
+		 boxHeight = 20,      // height of each box (int)         
+		 linearBoxes =  9,   // number of boxes for linear scales (int)
+		 w = 300,           // width of container element
+		 h = 60,          // height of container element
+		 colors = [],
+		 padding = [2, 4, 10, 4],               // top, right, bottom, left
+		 boxSpacing = 0, // spacing between boxes
+		 domain = [1973,2014],
+		 range = ['rgb(8, 88, 158)', 'rgb( 168, 221, 181)'],  
+		 i = 0;
 		
 		 var min = 1973;
     	 var max = 2014;
